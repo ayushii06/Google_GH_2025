@@ -8,7 +8,7 @@ from werkzeug.utils import secure_filename  # Secure filename handling
 
 # Initialize Flask app
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "https://google-gh-2025-neon.vercel.app"}})
+CORS(app, resources={r"/*": {"origins": "*"}},supports_credentials=True)
 
 # Directory for temporary image storage
 UPLOAD_FOLDER = "temp"
