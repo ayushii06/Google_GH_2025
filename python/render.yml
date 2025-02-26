@@ -4,7 +4,9 @@ services:
     env: python
     plan: free  # Change to 'starter' or 'pro' for paid plans
     buildCommand: 
-      - pip install -r requirements.txt
+      apt-get update && apt-get install -y cmake libboost-all-dev
+      pip install --no-cache-dir --global-option=build_ext --global-option="-j2" dlib
+      pip install -r requirements.txt
     startCommand: gunicorn app:app
     envVars:
       - key: PYTHON_VERSION
