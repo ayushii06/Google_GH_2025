@@ -1,11 +1,10 @@
-# from .preprocess import preprocess_covid19
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torchvision import transforms
 from PIL import Image
 
-
+# class for the CNN model
 class CovidCNN(nn.Module):
     def __init__(self):
         super(CovidCNN, self).__init__()
@@ -23,10 +22,12 @@ class CovidCNN(nn.Module):
         x = self.fc2(x)
         return x
 
+# Load the trained model
 model = CovidCNN()
 model.load_state_dict(torch.load("models/covid_19/covid_cnn.pth"))
 model.eval()
 
+# Function to predict COVID-19
 def predict_covid19(image_path):
     
     # Define the same transformations as during training
@@ -37,7 +38,6 @@ def predict_covid19(image_path):
     ])
 
     # Load and preprocess the image
-    # image_path = "/content/yes.jpeg"
     image = Image.open(image_path).convert("RGB")
     image = transform(image).unsqueeze(0)  # Add batch dimension
     
@@ -50,7 +50,9 @@ def predict_covid19(image_path):
     class_names = ["COVID-19", "NORMAL", "PNEUMONIA"]
     print("class", class_names[predicted_class])
     
+    # The predicted class
     result = class_names[predicted_class]
     
+    #RETURN THE PREDICTED CLASS
     return result
 

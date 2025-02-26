@@ -28,6 +28,7 @@ def predict_brain_tumor(image_path):
     predicted_class = 1 if pred > 0.5 else 0
     confidence = round(float(pred if predicted_class == 1 else 1 - pred), 4)  # Confidence score
 
+    # Return prediction result
     result = {
         "class": class_labels[predicted_class],
         "confidence": confidence*100,

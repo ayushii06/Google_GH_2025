@@ -8,6 +8,7 @@ const { GENERATE_REPORT_API, } = diagnosisEndpoints;
 
 export const generateReport = async(formData, setLoading, setError, setSuccess, setErrorMessage) => {
         let report = {};
+        console.log("GENERATE REPORT API REQUEST1............", formData);
         try {
             if (!formData || !(formData instanceof FormData)) {
                 throw new Error("Invalid form data provided.");
@@ -19,9 +20,7 @@ export const generateReport = async(formData, setLoading, setError, setSuccess, 
 
             console.log("GENERATE REPORT API REQUEST............", formData);
 
-            const response = await apiConnector("POST", GENERATE_REPORT_API, formData, {
-                "Content-Type": "multipart/form-data",
-            });
+            const response = await apiConnector("POST", GENERATE_REPORT_API, formData);
 
             console.log("GENERATE REPORT API RESPONSE............", response);
 

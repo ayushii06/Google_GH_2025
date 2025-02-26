@@ -1,25 +1,14 @@
+import os
+from models.covid_19.predict_covid19 import predict_covid19
 from utils.model_selector import get_relevant_models
 from models.brain_tumor.predict_brain_tumor import predict_brain_tumor
-from models.covid_19.predict_covid19 import predict_covid19
-import numpy as np
-import os
-import dlib
-import tensorflow as tf
-import keras as k
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from imutils import face_utils
-from deepface import DeepFace  
-from scipy.spatial.distance import cosine
 from werkzeug.utils import secure_filename  # Secure filename handling
-
-# Print library versions
-print(f"TensorFlow Version: {tf.__version__}")
-print(f"Keras Version: {k.__version__}")
 
 # Initialize Flask app
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "https://google-gh-2025-neon.vercel.app"}})
 
 # Directory for temporary image storage
 UPLOAD_FOLDER = "temp"
@@ -31,9 +20,10 @@ MODEL_PREDICTORS = {
     "COVID 19": predict_covid19,
 }
 
+# route for generating report
 @app.route("/generate_report", methods=["POST"])
 def generate_report():
-    print("Generating report...", flush=True)
+    # print("Generating report...", flush=True) 
     
     try:
         # Validate form data
