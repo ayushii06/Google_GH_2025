@@ -20,6 +20,7 @@ export default function Modal({ setModalVisible }) {
     const [result_gen, setResultGen] = useState({});
     const [image, setImage] = useState(null);
 
+    // Form submission
     const {
         register,
         handleSubmit,
@@ -27,6 +28,7 @@ export default function Modal({ setModalVisible }) {
         formState: { errors },
     } = useForm();
 
+    // Submit form
     const submitProfileForm = async (data) => {
         try {
             console.log("DATA - ", data);

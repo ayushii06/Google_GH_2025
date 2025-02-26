@@ -2,8 +2,6 @@ import { toast } from "react-hot-toast"
 import { apiConnector } from "../apiconnector"
 import { diagnosisEndpoints } from "../api"
 
-
-
 const { GENERATE_REPORT_API, } = diagnosisEndpoints;
 
 export const generateReport = async(formData, setLoading, setError, setSuccess, setErrorMessage) => {
@@ -13,17 +11,20 @@ export const generateReport = async(formData, setLoading, setError, setSuccess, 
             if (!formData || !(formData instanceof FormData)) {
                 throw new Error("Invalid form data provided.");
             }
-
+            
+            // Set loading state and clear previous error/success messages
             setLoading(true);
             setError(false);
             setSuccess(false);
 
             console.log("GENERATE REPORT API REQUEST............", formData);
 
+            // Call the API
             const response = await apiConnector("POST", GENERATE_REPORT_API, formData);
 
             console.log("GENERATE REPORT API RESPONSE............", response);
 
+            // Handle API response
             if (!response || response.status !== 200) {
                 throw new Error(response?.data?.message || "Failed to generate report. Please try again.");
             }

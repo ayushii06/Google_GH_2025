@@ -13,7 +13,6 @@ const Error = (message) => {
         />
         <div className="text-center mt-5 mb-5 font-medium text-2xl ">
           <div className="">ERROR : {message}</div>
-          {/* <div className="text-2xl font-bold my-8">{errorMessage}</div> */}
         </div></div>
     </>
   );

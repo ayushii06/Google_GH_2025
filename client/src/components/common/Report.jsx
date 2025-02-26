@@ -4,18 +4,9 @@ import { useState } from "react";
 
 function Report({ result, image }) {
     console.log("RESULT:", result);
-    const [modalVisible, setModalVisible] = useState(false);   
 
-    const handleDownload = () => {
-        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(result, null, 2));
-        const element = document.createElement("a");
-        element.href = dataStr;
-        element.download = "report.json";
-        document.body.appendChild(element);
-        element.click();
-        document.body.removeChild(element);
-    };
-
+   
+    // If no result or diagnosis data is available
     if (!result || !result.diagnosis) {
         return <div className="text-center text-2xl font-bold my-45 text-gray-500">Our Server is Down. We are sorry !</div>;
     }
