@@ -8,7 +8,7 @@ from werkzeug.utils import secure_filename  # Secure filename handling
 
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
+CORS(app, resources={r"/*": { "origins": "https://google-gh-2025-neon.vercel.app", "methods": ["GET", "POST", "OPTIONS", "PUT", "PATCH", "DELETE"], "allow_headers": [ "X-Requested-With", "Content-Type", "Access-Control-Allow-Headers", "Access-Control-Allow-Origin", "Access-Control-Allow-Methods", "Access-Control-Allow-Credentials", "Authorization" ], "supports_credentials": True }})  
 
 UPLOAD_FOLDER = "temp"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
