@@ -20,7 +20,12 @@ export const generateReport = async(formData, setLoading, setError, setSuccess, 
             console.log("GENERATE REPORT API REQUEST............", formData);
 
             // Call the API
-            const response = await apiConnector("POST", GENERATE_REPORT_API, formData);
+            const response = await apiConnector("POST", GENERATE_REPORT_API, formData,{
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                    "Access-Control-Allow-Origin": "*",
+                },
+            });
 
             console.log("GENERATE REPORT API RESPONSE............", response);
 
